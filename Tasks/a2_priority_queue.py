@@ -3,8 +3,10 @@ Priority Queue
 
 Queue priorities are from 0 to 5
 """
-from typing import Any
+from typing import Any, List
+import heapq
 
+_priority_queue: List = []
 
 def enqueue(elem: Any, priority: int = 0) -> None:
 	"""
@@ -13,7 +15,8 @@ def enqueue(elem: Any, priority: int = 0) -> None:
 	:param elem: element to be added
 	:return: Nothing
 	"""
-	return None
+	heapq.heappush(_priority_queue, (priority, elem))
+	return
 
 
 def dequeue() -> Any:
@@ -22,7 +25,8 @@ def dequeue() -> Any:
 
 	:return: dequeued element
 	"""
-	return None
+	if _priority_queue:
+		return heapq.heappop(_priority_queue)
 
 
 def peek(ind: int = 0, priority: int = 0) -> Any:
@@ -32,8 +36,8 @@ def peek(ind: int = 0, priority: int = 0) -> Any:
 	:param ind: index of element (count from the beginning)
 	:return: peeked element
 	"""
-	return None
-
+	if _priority_queue and ind in range(len(_priority_queue)):
+		return _priority_queue[ind]
 
 def clear() -> None:
 	"""
@@ -41,4 +45,4 @@ def clear() -> None:
 
 	:return: None
 	"""
-	return None
+	return _priority_queue.clear()
